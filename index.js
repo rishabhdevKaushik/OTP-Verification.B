@@ -57,7 +57,7 @@ app.post("/verifyotp", async (req, res) => {
         });
         
         if (UserOtpVerificationRecord.length <= 0) {
-            return res.status(400).send({ message: "User already verified" });
+            return res.status(400).send({ message: "User already verified or does not exist" });
         } else {
             const  expiresAt  = UserOtpVerificationRecord[0].expiresAt;
             const hashedOtp = UserOtpVerificationRecord[0].otp;
