@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import express from "express";
+import cors from "cors";
 import bcrypt from "bcrypt";
 import UserOtpVerification from "./models/UserOtpVerification.model.js";
 import connectDB from "./connectMongo.js";
@@ -8,6 +9,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json()); // To read JSON
+app.use(cors()); // Enable CORS from all domains
 connectDB();
 
 const transporter = nodemailer.createTransport({
@@ -87,5 +89,5 @@ app.post("/verifyotp", async (req, res) => {
 });
 
 app.listen(8080, () => {
-    console.log(`Server is running on port 8080`);
+    // console.log(`Server is running on port 8080`);
 });
